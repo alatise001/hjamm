@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import localFont from "next/font/local";
 import Footer from "@/components/footer";
+import HeaderDesktop from "@/components/headerDesktop";
 
 
 const geistSans = Geist({
@@ -56,7 +57,10 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} ${gambetta.variable} ${switzer.variable} h-full antialiased`}
     >
       <body className="min-h-full">
-        <Header />
+        <>
+          <Header />
+          <HeaderDesktop />
+        </>
         {children}
         <Footer />
       </body>

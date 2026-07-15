@@ -22,11 +22,11 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "h-[40px] gap-1.5 px-[40px] py-[15px] rounded-[10px] text-[12px] font-bold uppercase has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+          "h-[40px] md:h-[60px] gap-1.5 px-[40px] py-[15px] rounded-[10px] text-[12px] md:text-[16px] font-bold uppercase has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
         xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-[54px] w-[150px] gap-1.5 px-[30px] py-[15px] border-[#8B3A3A] border-[2px] text-[#8B3A3A] gap-1.5 px-2.5 text-[14px] rounded-[10px] font-semibold gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-[64px] w-full tracking-[2px] gap-1.5 px-[40px] py-[20px] gap-1.5 px-2.5 text-base rounded-[50px] has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-        icon: "size-8",
+        sm: "h-[54px] w-[150px] lg:w-[231px] gap-1.5 px-[30px] py-[15px] border-[#8B3A3A] border-[2px] text-[#8B3A3A] gap-1.5 px-2.5 text-[14px] lg:text-[16px] rounded-[10px] font-semibold gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-[64px] w-full tracking-[2px] gap-1.5 px-[40px] py-[20px] gap-1.5 px-2.5 text-[12px] md:text-[16px] rounded-[50px] has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+        icon: "size-8 lg:size-12",
         "icon-xs":
           "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
         "icon-sm":

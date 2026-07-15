@@ -4,7 +4,7 @@ import { Clock1 } from 'lucide-react'
 
 export default function LiveEvents({ when }) {
     return (
-        <div className={`pt-8 h-77.5 ${when === 'live' ? 'bg-[#8B3A3A]' : 'bg-transparent border-[#8B3A3A73] border-[0.5px]'} rounded-[10px] flex flex-col gap-8 items-center`} >
+        <div className={` pt-8 lg:p-8 h-77.5 lg:h-[149px] ${when === 'live' ? 'bg-[#8B3A3A]' : 'bg-transparent border-[#8B3A3A73] border-[0.5px]'} rounded-[10px] flex flex-col lg:flex-row lg:justify-between gap-8 lg:gap-8 items-center`} >
             <div className="text-center">
                 <p className={` ${when === 'live' ? 'text-[#FFFFFFCC]' : 'text-[#99A1AF]'} text-[12px] font-switzer tracking-[1.2px]`}>
                     {when === 'live' ? 'LIVE NOW' : 'UPCOMING'}
@@ -16,18 +16,18 @@ export default function LiveEvents({ when }) {
                 </div>
             </div>
 
-            <div className="text-center max-w-[65%]">
+            <div className="text-center lg:text-left max-w-[65%]">
                 <p className={`font-gambetta text-[20px] font-medium ${when === 'live' ? 'text-white' : 'text-[#2C2C2C]'} capitalize`}>Holy Hour of Intercession</p>
                 <p className={`font-switzer text-[12px]  ${when === 'live' ? 'text-[#FFFFFFCC]' : 'text-[#6A7282]'}`}>
                     Participate in silent adoration and corporate prayer for healing requests.
                 </p>
             </div>
 
-            <Button size='sm' className={` ${when === 'live' ? 'bg-white' : 'bg-transparent'} text-[14px] text-[#8B3A3A] font-switzer font-semibold gap-1.5 px-2.5 py-1.5 rounded-[10px]`}>
+            <Button size='sm' className={` ${when === 'live' ? 'bg-white' : 'bg-transparent'} text-[#8B3A3A] font-switzer font-semibold gap-1.5 px-2.5 py-1.5 rounded-[10px]`}>
 
                 {when === 'live' ? (
                     <>
-                        <svg fill="#FF0000" height="16" width="16" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>YouTube</title><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+                        <svg fill="#FF0000" className='lg:h-[28px] h-4 w-4 lg:w-[28px]' role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>YouTube</title><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <g clipPath="url(#clip0_386_3126)">
