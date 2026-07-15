@@ -3,7 +3,7 @@ import React from 'react'
 export default function NewsBlock() {
     return (
 
-        <div className=" h-fit rounded-[10px] border border-[#0000001A] shadow">
+        <div className=" h-fit rounded-[10px]  border border-[#0000001A] shadow">
             <div className="  outline-1 bg-[url('/heroBg.jpg')] rounded-t-[10px] bg-cover bg-center h-[204px]" />
 
             <div className="px-6 py-6.5 flex flex-col gap-3 rounded-b-[10px] bg-white">

@@ -66,11 +66,11 @@ export default function DateSelect() {
 
 
     return (
-        <form className="ml-auto">
+        <form className="ml-auto lg:ml-0">
             <div className="flex gap-1">
-                <Field className="w-fit h-3.75">
+                <Field className="w-fit md:w-[88px] h-3.75 md:h-[28px]">
                     <Select defaultValue=""  >
-                        <SelectTrigger id="checkout-exp-month-ts6" className='border-gray-300 rounded-full pr-0 pl-0 pt-0 pb-0 py-0.5 px-1.5 bg-[#F8F8F8] text-gray-900 text-[10px] font-switzer'>
+                        <SelectTrigger id="checkout-exp-month-ts6" className='border-gray-300 rounded-md pr-0 pl-0 pt-0 pb-0 py-0.5 px-1.5 bg-[#F8F8F8] text-gray-900 text-[10px] font-switzer'>
                             <SelectValue placeholder="DD" />
                         </SelectTrigger>
                         <SelectContent>
@@ -88,9 +88,9 @@ export default function DateSelect() {
                     </Select>
                 </Field>
 
-                <Field className="w-fit h-3.75">
+                <Field className="w-fit md:w-[88px] h-3.75 md:h-[28px]">
                     <Select defaultValue=""  >
-                        <SelectTrigger id="checkout-exp-month-ts6" className='border-gray-300 rounded-full pr-0 pl-0 pt-0 pb-0 py-0.5 px-1.5 bg-[#F8F8F8] text-gray-900 text-[10px] font-switzer'>
+                        <SelectTrigger id="checkout-exp-month-ts6" className='border-gray-300 rounded-md pr-0 pl-0 pt-0 pb-0 py-0.5 px-1.5 bg-[#F8F8F8] text-gray-900 text-[10px] font-switzer'>
                             <SelectValue placeholder="MM" />
                         </SelectTrigger>
                         <SelectContent>
@@ -108,9 +108,9 @@ export default function DateSelect() {
                     </Select>
                 </Field>
 
-                <Field className="w-fit h-3.75">
+                <Field className="w-fit md:w-[88px] h-3.75 md:h-[28px]">
                     <Select defaultValue=""  >
-                        <SelectTrigger id="checkout-exp-month-ts6" className='border-gray-300 rounded-full pr-0 pl-0 pt-0 pb-0 py-0.5 px-1.5 bg-[#F8F8F8] text-gray-900 text-[10px] font-switzer'>
+                        <SelectTrigger id="checkout-exp-month-ts6" className='border-gray-300 rounded-md pr-0 pl-0 pt-0 pb-0 py-0.5 px-1.5 bg-[#F8F8F8] text-gray-900 text-[10px] font-switzer'>
                             <SelectValue placeholder="YYYY" />
                         </SelectTrigger>
                         <SelectContent>
