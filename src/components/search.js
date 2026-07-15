@@ -8,7 +8,7 @@ import {
 
 export function InputSearch() {
     return (
-        <InputGroup className="w-full bg-white h-11 rounded-[10px] border">
+        <InputGroup className="w-full  bg-white h-11 rounded-[10px] border">
             <InputGroupInput className="text-[#9CA3AF] placeholder:text-[#9CA3AF] placeholder:text-[12px] text-[12px]" placeholder="Search events..." />
             <InputGroupAddon>
                 <Search className="text-[#9CA3AF] h-3 w-3" />

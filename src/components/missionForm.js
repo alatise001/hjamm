@@ -156,8 +156,8 @@ export default function MissionForm() {
                         control={form.control}
                         render={({ field, fieldState }) => (
                             <Field
-                                className="h-[48px]"
-                                orientation="responsive"
+                                className=""
+                                // orientation="responsive"
                                 data-invalid={fieldState.invalid}
                             >
                                 <FieldLabel htmlFor="mission-form-ministry">
@@ -167,12 +167,12 @@ export default function MissionForm() {
                                     name={field.name}
                                     value={field.value}
                                     onValueChange={field.onChange}
-                                    className="h-[48px]"
+                                    className=""
                                 >
                                     <SelectTrigger
                                         id="form-rhf-select-language"
                                         aria-invalid={fieldState.invalid}
-                                        className="min-w-[120px]"
+                                        className=""
                                     >
                                         <SelectValue placeholder="Select" />
                                     </SelectTrigger>
