@@ -171,7 +171,6 @@ export default function Home() {
 
       </section>
 
-
       <section className="bg-white py-8 px-6 md:px-46.25 lg:w-[60%] lg:mx-auto md:py-24 flex flex-col gap-7">
         <div className="text-center flex flex-col gap-4.5 w-[90%] mx-auto">
           <div className="flex items-center justify-center gap-3">
