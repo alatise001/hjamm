@@ -8,6 +8,36 @@ import Link from 'next/link'
 
 export default function Header() {
 
+    const navList = [
+        {
+            name: "Ministries",
+            hasOptions: true,
+            route: "/ministries",
+        },
+        {
+            name: "Events",
+            hasOptions: false,
+            route: "/events",
+        },
+        {
+            name: "Gallery",
+            hasOptions: false,
+            route: "/gallery",
+        }, {
+            name: "Books",
+            hasOptions: false,
+            route: "/books"
+        }, {
+            name: "Live Prayers",
+            hasOptions: false,
+            route: "/live-prayer"
+        }, {
+            name: "About Us",
+            hasOptions: false,
+            route: "/about-us"
+        },
+    ]
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     // Optional but recommended: Prevent scrolling on the main page when the menu is open
@@ -63,16 +93,13 @@ export default function Header() {
                     <div className="flex-1 flex flex-col justify-center items-center px-4 pb-8 overflow-y-auto">
                         {/* Navigation Links */}
                         <nav className="flex-1 flex flex-col items-center justify-center space-y-8 text-white font-gambetta text-xl tracking-wider">
-                            <p className="hover:text-[#D4AF37] focus:text-[#D4AF37] transition-colors" onClick={() => setIsMenuOpen(false)}>MINISTRIES</p>
-                            <Link href="/events" className="flex gap-2 items-center">
-                                <p onClick={() => setIsMenuOpen(false)} className="hover:text-[#D4AF37] focus:text-[#D4AF37] transition-colors">EVENTS</p>
-                            </Link>
-                            <p onClick={() => setIsMenuOpen(false)} className="hover:text-[#D4AF37] focus:text-[#D4AF37] transition-colors">GALLERY</p>
-                            <p onClick={() => setIsMenuOpen(false)} className="hover:text-[#D4AF37] focus:text-[#D4AF37] transition-colors">BOOKS</p>
-                            <p onClick={() => setIsMenuOpen(false)} className="hover:text-[#D4AF37] focus:text-[#D4AF37] transition-colors">LIVE PRAYER</p>
-                            <p onClick={() => setIsMenuOpen(false)} className="hover:text-[#D4AF37] focus:text-[#D4AF37] transition-colors">ABOUT US</p>
+                            {navList.map((item, index) => (
+                                <Link key={index} href={item?.route} className="flex gap-2 items-center">
+                                    <p onClick={() => setIsMenuOpen(false)} className="hover:text-[#D4AF37] focus:text-[#D4AF37] transition-colors">{item?.name}</p>
+                                </Link>
+                            )
+                            )}
                         </nav>
-
 
                         <div className="mt-auto pt-10 text-center text-[#B8B8B8] text-xs italic font-switzer">
                             <p>May the Sacred Heart of Jesus and the Immaculate Heart of Mary be praised forever.</p>

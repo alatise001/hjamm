@@ -74,7 +74,7 @@ export default function HeaderDesktop() {
         }, {
             name: "Live Prayers",
             hasOptions: false,
-            route: "/live-prayers"
+            route: "/live-prayer"
         }, {
             name: "About Us",
             hasOptions: false,
