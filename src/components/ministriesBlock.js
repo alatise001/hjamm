@@ -3,7 +3,7 @@ import React from 'react'
 export default function MinistriesBlock() {
     return (
 
-        <div className="min-w-58.75 h-fit rounded-[10px] border border-[#0000001A] shadow">
+        <div className="min-w-58.75 max-w-[370px] h-fit rounded-[10px] border border-[#0000001A] shadow">
             <div className=" w-full outline-1 bg-[url('/heroBg.jpg')] rounded-t-[10px] bg-cover bg-center h-33.75" />
 
             <div className="p-3.5 flex flex-col gap-2">
