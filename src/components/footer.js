@@ -2,6 +2,7 @@ import { Mail, MapPin, Phone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { routes } from "../routes"
 
 export default function Footer() {
     return (
@@ -10,7 +11,7 @@ export default function Footer() {
             <div className='pt-10 md:pt-20 pb-5 md:pb-12.5 px-6 md:px-12 bg-white h-max flex flex-col md:flex-row md:justify-between gap-10 '>
                 <div className='flex flex-col gap-6 md:max-w-142'>
 
-                    <Link href="/" className="flex gap-2 items-center">
+                    <Link href={routes.home} className="flex gap-2 items-center">
                         <div className="flex gap-2 items-center">
 
                             <Image
@@ -66,10 +67,18 @@ export default function Footer() {
 
                     <nav>
                         <ul className='flex flex-col gap-4 text-[#7A7A7A] text-[16px] font-switzer leading-6'>
-                            <li>Ministries</li>
-                            <li>Books</li>
-                            <li>Live Events</li>
-                            <li>Volunteer </li>
+                            <Link href={routes.ministries}>
+                                <li>Ministries</li>
+                            </Link>
+                            <Link href={routes.books}>
+                                <li>Books</li>
+                            </Link>
+                            <Link href={routes.events}>
+                                <li>Live Events</li>
+                            </Link>
+                            <Link href={routes.aboutUs}>
+                                <li>Volunteer</li>
+                            </Link>
                         </ul>
                     </nav>
                 </div>
@@ -81,11 +90,15 @@ export default function Footer() {
 
                     <nav>
                         <ul className='flex flex-col gap-4 text-[#7A7A7A] text-[16px] font-switzer leading-6'>
-                            <li>Gallery</li>
-                            <Link href="/events">
+                            <Link href={routes.gallery}>
+                                <li>Gallery</li>
+                            </Link>
+                            <Link href={routes.events}>
                                 <li>Events</li>
                             </Link>
-                            <li>About Us</li>
+                            <Link href={routes.aboutUs}>
+                                <li>About Us</li>
+                            </Link>
                         </ul>
                     </nav>
                 </div>

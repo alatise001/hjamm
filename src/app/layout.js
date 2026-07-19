@@ -4,6 +4,7 @@ import Header from "@/components/header";
 import localFont from "next/font/local";
 import Footer from "@/components/footer";
 import HeaderDesktop from "@/components/headerDesktop";
+import { Toaster } from "@/components/ui/sonner"
 
 
 const geistSans = Geist({
@@ -62,6 +63,7 @@ export default function RootLayout({ children }) {
           <HeaderDesktop />
         </>
         {children}
+        <Toaster position="top-center" />
         <Footer />
       </body>
     </html>

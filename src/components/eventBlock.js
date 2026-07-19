@@ -2,12 +2,15 @@ import React from 'react'
 import MissionForm from './missionForm'
 import { Calendar, Clock, UserRound, UsersRound } from 'lucide-react'
 import { Button } from './ui/button'
+import Link from 'next/link'
+import { routes } from '@/routes'
 
 export default function EventBlock() {
     return (
 
         <div className=" h-fit rounded-[10px] lg:flex border border-[#0000001A] bg-[#F5F1ED] shadow">
-            <div className=" flex flex-col lg:h-[773px] lg:w-[50%] items-center gap-8 justify-center bg-[url('/missionBg.png')] px-6.5 rounded-t-[10px] lg:rounded-t-none lg:rounded-l-[10px] bg-cover bg-center h-[216px] bg-blend-overlay bg-black/50" />
+            <div className=" flex flex-col lg:h-[773px] lg:w-[50%] items-center gap-8 justify-center bg-[url('/oneEventBg.jpg')] px-6.5 rounded-t-[10px] lg:rounded-t-none lg:rounded-l-[10px] bg-cover
+             bg-center h-[216px] bg-blend-overlay bg-black/50" />
 
             <div className="lg:h-[773px] lg:w-[50%] px-6 py-6.5 lg:p-16 flex flex-col lg:justify-around gap-3 rounded-b-[10px] bg-[#F5F1ED]">
 
@@ -51,7 +54,9 @@ export default function EventBlock() {
                     </div>
 
                     <Button className="h-12.5 w-full lg:w-fit text-[14px] tracking-[1.4px] mt-[24px]">
-                        Register Now
+                        <Link href={routes.eventsDetails("2026-national-retreat")} className="w-full md:w-fit">
+                            Register Now
+                        </Link>
                     </Button>
 
                 </div>

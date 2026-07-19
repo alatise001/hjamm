@@ -2,6 +2,9 @@ import { Button } from '@/components/ui/button'
 import UpcomingEventsBlock from '@/components/upcomingEventsBlock'
 import { ArrowLeft, ArrowRight, Calendar, Calendar1, Clock, Clock1, Cross, DollarSign, MapPin, UsersRound } from 'lucide-react'
 import React from 'react'
+import { retreatSchedule, allEvents } from "../../../data"
+import Link from 'next/link'
+import { routes } from '@/routes'
 
 export default function EventDetails() {
     return (
@@ -30,7 +33,7 @@ export default function EventDetails() {
 
                 <div>
 
-                    <div className='h-[60vh] lg:h-[773px] w-full bg-[url("/eventBg.png")] bg-cover bg-center' />
+                    <div className='h-[60vh] lg:h-[773px] w-full bg-[url("/oneEventBg.jpg")] bg-cover bg-center' />
 
                     <div className='flex flex-col gap-4 bg-[#F5F1ED] lg:gap-8 px-8 lg:px-16 lg:py-8.5 py-4'>
                         <div className='flex items-center gap-2 text-[#8B3A3A] text-[10px] lg:text-[18px] font-bold font-switzer'>
@@ -117,12 +120,12 @@ export default function EventDetails() {
                         </div>
 
                         <div className='w-fit lg:w-[247.5px] lg:h-[72px] bg-[#F5F1ED] text-[#6B7280] rounded-[8px] flex justify-between items-center gap-2 px-4 lg:px-6 py-2 lg:py-4'>
-                            <p className='font-gambetta  text-[10px] lg:text-[16px]'>Day 1 (Jun 12)</p>
+                            <p className='font-gambetta  text-[10px] lg:text-[16px]'>Day 2 (Jun 13)</p>
                             <ArrowRight className='h-3 w-3 lg:h-6 lg:w-6' />
                         </div>
 
                         <div className='w-fit lg:w-[247.5px] lg:h-[72px] text-[#6B7280] bg-[#F5F1ED] rounded-[8px] flex justify-between items-center gap-2 px-4 lg:px-6 py-2 lg:py-4'>
-                            <p className='font-gambetta text-[10px] lg:text-[16px]'>Day 1 (Jun 12)</p>
+                            <p className='font-gambetta text-[10px] lg:text-[16px]'>Day 3 (Jun 14)</p>
                             <ArrowRight className='h-3 w-3 lg:h-6 lg:w-6' />
                         </div>
                     </div>
@@ -136,52 +139,37 @@ export default function EventDetails() {
                         </div>
 
                         <div className='flex flex-col'>
-                            <div className='h-fit flex gap-4 lg:gap-8'>
-                                <div className=' w-fit flex flex-col items-center'>
-                                    <div className='h-2.5 w-2.5 lg:h-3 lg:w-3 aspect-square rounded-full bg-[#8B3A3A]' />
-                                    <div className='h-full w-px rounded-full bg-[#8B3A3A]' />
-                                </div>
 
-                                <div className='w-full'>
-                                    <div className=' flex justify-between w-full font-switzer font-semibold'>
-                                        <p className='text-[#2C2C2C]  text-[12px] lg:text-[18px]'>06:00 AM — Morning Prayer & Eucharist</p>
-                                        <p className='text-[#D4AF37]  text-[8px] lg:text-[12px] tracking-[1.2px] uppercase'>45 MINUTES</p>
+                            {
+                                retreatSchedule.map((item, index) => (
+
+                                    <div key={index} className='h-fit flex gap-4 lg:gap-8'>
+                                        <div className=' w-fit flex flex-col items-center'>
+                                            <div className={`h-2.5 w-2.5 lg:h-3 lg:w-3 aspect-square rounded-full ${(index % 2 === 0) ? 'bg-[#8B3A3A]' : 'bg-[#D4AF37]'}`} />
+                                            <div className={`h-full w-px rounded-full ${(index % 2 === 0) ? 'bg-[#8B3A3A]' : 'bg-[#D4AF37]'} `} />
+                                        </div>
+
+                                        <div className='w-full'>
+                                            <div className=' flex justify-between w-full font-switzer font-semibold'>
+                                                <div className='flex'>
+                                                    <p className='text-[#2C2C2C]  text-[12px] lg:text-[18px]'>{item.time}</p>
+                                                    <p className='text-[#2C2C2C]  text-[12px] lg:text-[18px]'>—</p>
+                                                    <p className='text-[#2C2C2C]  text-[12px] lg:text-[18px]'>{item.namee}</p>
+                                                </div>
+                                                <p className='text-[#D4AF37]  text-[8px] lg:text-[12px] tracking-[1.2px] uppercase'>{item.duration}</p>
+                                            </div>
+                                            <p className='text-[#6B7280] font-gambetta text-[10px] lg:text-[14px]'>
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                        <div className='h-20 md:h-14 lg:h-18'></div>
+
                                     </div>
-                                    <p className='text-[#6B7280] font-gambetta text-[10px] lg:text-[14px]'>
-                                        Opening the day with the sacrifice of the Mass and the Liturgy of the Hours.
-                                    </p>
-                                </div>
-                                <div className='h-20 md:h-14 lg:h-18'></div>
-
-                            </div>
-
-                            <div className='h-fit flex pb-4 gap-4 lg:gap-8'>
-                                <div className=' w-fit flex flex-col items-center'>
-                                    <div className='h-2.5 w-2.5 lg:h-3 lg:w-3 aspect-square rounded-full bg-[#D4AF37]' />
-                                    <div className='h-full w-px rounded-full bg-[#D4AF37]' />
-                                </div>
-
-                                <div className='w-full'>
-                                    <div className=' flex justify-between w-full font-switzer font-semibold'>
-                                        <p className='text-[#2C2C2C]  text-[12px] lg:text-[18px]'>06:00 AM — Morning Prayer & Eucharist</p>
-                                        <p className='text-[#D4AF37]  text-[8px] lg:text-[12px] tracking-[1.2px] uppercase'>45 MINUTES</p>
-                                    </div>
-                                    <p className='text-[#6B7280] font-gambetta text-[10px] lg:text-[14px]'>
-                                        Opening the day with the sacrifice of the Mass and the Liturgy of the Hours.
-                                    </p>
-                                </div>
-
-                                <div className='h-20 md:h-14 lg:h-18'></div>
-
-                            </div>
+                                ))
+                            }
 
                         </div>
-
-
-
                     </div>
-
-
                 </div>
 
             </section>
@@ -218,18 +206,21 @@ export default function EventDetails() {
                     <div className='flex items-center justify-between gap-5 md:gap-12.5'>
                         <h2 className="text-[#2C2C2C] font-gambetta text-2xl md:text-[32px]">Other Upcoming Retreats</h2>
                         <div className=" flex items-center text-[#8B3A3A]">
-                            <p className='text-[10px] font-switzer lg:text-[12px]'>ALL EVENTS</p>
-                            <ArrowRight className=' h-3 w-3 lg:h-6 lg:w-6' />
+                            <Link href={routes?.events} className="flex items-center gap-2">
+                                <p className='text-[10px] font-switzer lg:text-[12px]'>ALL EVENTS</p>
+                                <ArrowRight className=' h-3 w-3 lg:h-6 lg:w-6' />
+                            </Link>
                         </div>
                     </div>
                 </div>
 
                 <div className="flex gap-4 lg:gap-10.5 overflow-x-auto scrollbar-none w-full">
-                    <UpcomingEventsBlock />
-                    <UpcomingEventsBlock />
-                    <UpcomingEventsBlock />
-                    <UpcomingEventsBlock />
-                    <UpcomingEventsBlock />
+                    {
+                        allEvents.map((event, index) => (
+
+                            <UpcomingEventsBlock key={index} online={event.online} type={event.type} location={event.location} name={event.name} route={event.route} description={event.description} date={event.date} img={event.img} />
+                        ))
+                    }
                 </div>
             </section>
 

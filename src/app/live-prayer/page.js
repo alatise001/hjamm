@@ -1,9 +1,63 @@
 import PetitionForm from '@/components/petitoionForm'
 import { Button } from '@/components/ui/button'
-import { Clock3, KeyRound, Leaf, Phone, UsersRound } from 'lucide-react'
+import { routes } from '@/routes'
+import { Clock3, KeyRound, Leaf, Phone, UsersRound, Hourglass, Calendar1, Heart, HandHelping } from 'lucide-react'
+import Link from 'next/link'
 import React from 'react'
 
 export default function LivePrayer() {
+
+    const prayer = [
+        {
+            name: "Holy Spirit Prayer Line",
+            date: "10pm ET (Sat-Thurs) | 9pm ET (Fri)",
+            freq: "daily",
+            call: "+1-605-472-5461",
+            code: "181518",
+            icon: <Phone className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
+        },
+        {
+            name: "Rosary Prayer",
+            date: "9pm ET (Sat-Thurs) | 8pm ET (Fri)",
+            freq: "daily",
+            call: "+1-605-475-4820",
+            code: "347692",
+            icon: <HandHelping className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
+        },
+        {
+            name: "Gethsemane Hour Prayer",
+            date: "11:45pm ET Every Thursday",
+            freq: "WEEKLY - THURSDAY",
+            call: "+1-605-475-4820",
+            code: "347692",
+            icon: <Hourglass className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
+        },
+        {
+            name: "1st Sat. Devotion",
+            date: "12 Noon ET (1st Sat of every month)",
+            freq: "MONTHLY",
+            call: "+1-605-475-4820",
+            code: "347692",
+            icon: <Calendar1 className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
+        },
+        {
+            name: "Youth Ministry Prayer",
+            date: "1pm ET Every Saturday",
+            freq: "WEEKLY - SATURDAY",
+            call: "+1-712-775-7270",
+            code: "435567",
+            icon: <UsersRound className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
+        },
+        {
+            name: "Divine Mercy Prayer",
+            date: "3pm ET Every Friday",
+            freq: "WEEKLY - FRIDAY",
+            call: "+1-605-472-5461",
+            code: "1815180",
+            icon: <Heart className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
+        },
+    ]
+
     return (
         <div>
             <section className="pt-36 pb-16 px-9.25 md:pt-50 h-fit md:h-[80vh] bg-[url('/livePrayerBg.jpg')] bg-cover bg-center flex flex-col gap-8 items-center bg-blend-overlay bg-black/80">
@@ -83,228 +137,50 @@ export default function LivePrayer() {
                 <div className='flex flex-col lg:flex-row gap-10'>
 
                     <div className='flex lg:w-[70%] flex-col gap-6'>
-                        <div className='bg-[#FFFFFF] p-6 md:p-8 flex flex-col items-center md:items-start md:flex-row gap-6 md:gap-8 rounded-[10px]'>
-                            <div className='bg-[#F5F1ED] flex justify-center items-center h-12 w-12 aspect-square rounded-full md:h-14 md:w-14'>
-                                <Phone className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
 
-                            </div>
+                        {
+                            prayer.map((item, index) => (
 
-                            <div className='flex flex-col items-center gap-2 md:gap-1 md:items-start '>
-                                <div className='flex py-0.5 px-2 w-fit h-fit bg-[#D4AF37] items-center justify-center rounded-[2px]'>
-                                    <p className='uppercase text-[8px] md:text-[10px] font-switzer font-bold tracking-[1px] text-white'>Daily</p>
+                                <div key={index} className='bg-[#FFFFFF] p-6 md:p-8 flex flex-col items-center md:items-start md:flex-row gap-6 md:gap-8 rounded-[10px]'>
+                                    <div className='bg-[#F5F1ED] flex justify-center items-center h-12 w-12 aspect-square rounded-full md:h-14 md:w-14'>
+                                        {item.icon}
+
+                                    </div>
+
+                                    <div className='flex flex-col items-center gap-2 md:gap-1 md:items-start '>
+                                        <div className='flex py-0.5 px-2 w-fit h-fit bg-[#D4AF37] items-center justify-center rounded-[2px]'>
+                                            <p className='uppercase text-[8px] md:text-[10px] font-switzer font-bold tracking-[1px] text-white'>{item?.freq}</p>
+                                        </div>
+
+                                        <p className='text-[#2C2C2C] text-[18px] md:text-[24px] font-semibold tracking-[-0.24px] font-gambetta'>
+                                            {item?.name}
+                                        </p>
+
+                                        <div className='flex gap-2 md:gap-3 items-center'>
+                                            <Clock3 className=' text-[#8B3A3A] h-3 w-3 md:h-4 md:w-4' />
+                                            <p className='text-[#6B7280] text-[10px] md:text-[14px] tracking-[1.4px] font-switzer'>
+                                                {item?.time}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className='md:ml-auto flex flex-col gap-2 md:gap-3 items-center justify-center'>
+                                        <Button className='rounded-[0]  md:h-12 w-[200px]'>
+                                            <Phone />
+                                            CALL {item?.call}
+                                        </Button>
+
+                                        <Button className='rounded-[0] border-[#D4AF374D] w-[200px] text-[#4B5563] bg-white md:h-12'>
+                                            <KeyRound />
+                                            CODE: {item?.code}#
+                                        </Button>
+
+                                    </div>
+
                                 </div>
 
-                                <p className='text-[#2C2C2C] text-[18px] md:text-[24px] font-semibold tracking-[-0.24px] font-gambetta'>
-                                    Holy Spirit Prayer Line
-                                </p>
-
-                                <div className='flex gap-2 md:gap-3 items-center'>
-                                    <Clock3 className=' text-[#8B3A3A] h-3 w-3 md:h-4 md:w-4' />
-                                    <p className='text-[#6B7280] text-[10px] md:text-[14px] tracking-[1.4px] font-switzer'>
-                                        10pm ET (Sat-Thurs) | 9pm ET (Fri)
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className='md:ml-auto flex flex-col gap-2 md:gap-3 items-center justify-center'>
-                                <Button className='rounded-[0]  md:h-12 w-[200px]'>
-                                    <Phone />
-                                    CALL +1-605-472-5461
-                                </Button>
-
-                                <Button className='rounded-[0] border-[#D4AF374D] w-[200px] text-[#4B5563] bg-white md:h-12'>
-                                    <KeyRound />
-                                    CODE: 347692#
-                                </Button>
-
-                            </div>
-
-                        </div>
-                        <div className='bg-[#FFFFFF] p-6 md:p-8 flex flex-col items-center md:items-start md:flex-row gap-6 md:gap-8 rounded-[10px]'>
-                            <div className='bg-[#F5F1ED] flex justify-center items-center h-12 w-12 aspect-square rounded-full md:h-14 md:w-14'>
-                                <Phone className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
-
-                            </div>
-
-                            <div className='flex flex-col items-center gap-2 md:gap-1 md:items-start '>
-                                <div className='flex py-0.5 px-2 w-fit h-fit bg-[#D4AF37] items-center justify-center rounded-[2px]'>
-                                    <p className='uppercase text-[8px] md:text-[10px] font-switzer font-bold tracking-[1px] text-white'>Daily</p>
-                                </div>
-
-                                <p className='text-[#2C2C2C] text-[18px] md:text-[24px] font-semibold tracking-[-0.24px] font-gambetta'>
-                                    Holy Spirit Prayer Line
-                                </p>
-
-                                <div className='flex gap-2 md:gap-3 items-center'>
-                                    <Clock3 className=' text-[#8B3A3A] h-3 w-3 md:h-4 md:w-4' />
-                                    <p className='text-[#6B7280] text-[10px] md:text-[14px] tracking-[1.4px] font-switzer'>
-                                        10pm ET (Sat-Thurs) | 9pm ET (Fri)
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className='md:ml-auto flex flex-col gap-2 md:gap-3 items-center justify-center'>
-                                <Button className='rounded-[0]  md:h-12 w-[200px]'>
-                                    <Phone />
-                                    CALL +1-605-472-5461
-                                </Button>
-
-                                <Button className='rounded-[0] border-[#D4AF374D] w-[200px] text-[#4B5563] bg-white md:h-12'>
-                                    <KeyRound />
-                                    CODE: 347692#
-                                </Button>
-
-                            </div>
-
-                        </div>
-                        <div className='bg-[#FFFFFF] p-6 md:p-8 flex flex-col items-center md:items-start md:flex-row gap-6 md:gap-8 rounded-[10px]'>
-                            <div className='bg-[#F5F1ED] flex justify-center items-center h-12 w-12 aspect-square rounded-full md:h-14 md:w-14'>
-                                <Phone className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
-
-                            </div>
-
-                            <div className='flex flex-col items-center gap-2 md:gap-1 md:items-start '>
-                                <div className='flex py-0.5 px-2 w-fit h-fit bg-[#D4AF37] items-center justify-center rounded-[2px]'>
-                                    <p className='uppercase text-[8px] md:text-[10px] font-switzer font-bold tracking-[1px] text-white'>Daily</p>
-                                </div>
-
-                                <p className='text-[#2C2C2C] text-[18px] md:text-[24px] font-semibold tracking-[-0.24px] font-gambetta'>
-                                    Holy Spirit Prayer Line
-                                </p>
-
-                                <div className='flex gap-2 md:gap-3 items-center'>
-                                    <Clock3 className=' text-[#8B3A3A] h-3 w-3 md:h-4 md:w-4' />
-                                    <p className='text-[#6B7280] text-[10px] md:text-[14px] tracking-[1.4px] font-switzer'>
-                                        10pm ET (Sat-Thurs) | 9pm ET (Fri)
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className='md:ml-auto flex flex-col gap-2 md:gap-3 items-center justify-center'>
-                                <Button className='rounded-[0]  md:h-12 w-[200px]'>
-                                    <Phone />
-                                    CALL +1-605-472-5461
-                                </Button>
-
-                                <Button className='rounded-[0] border-[#D4AF374D] w-[200px] text-[#4B5563] bg-white md:h-12'>
-                                    <KeyRound />
-                                    CODE: 347692#
-                                </Button>
-
-                            </div>
-
-                        </div>
-                        <div className='bg-[#FFFFFF] p-6 md:p-8 flex flex-col items-center md:items-start md:flex-row gap-6 md:gap-8 rounded-[10px]'>
-                            <div className='bg-[#F5F1ED] flex justify-center items-center h-12 w-12 aspect-square rounded-full md:h-14 md:w-14'>
-                                <Phone className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
-
-                            </div>
-
-                            <div className='flex flex-col items-center gap-2 md:gap-1 md:items-start '>
-                                <div className='flex py-0.5 px-2 w-fit h-fit bg-[#D4AF37] items-center justify-center rounded-[2px]'>
-                                    <p className='uppercase text-[8px] md:text-[10px] font-switzer font-bold tracking-[1px] text-white'>Daily</p>
-                                </div>
-
-                                <p className='text-[#2C2C2C] text-[18px] md:text-[24px] font-semibold tracking-[-0.24px] font-gambetta'>
-                                    Holy Spirit Prayer Line
-                                </p>
-
-                                <div className='flex gap-2 md:gap-3 items-center'>
-                                    <Clock3 className=' text-[#8B3A3A] h-3 w-3 md:h-4 md:w-4' />
-                                    <p className='text-[#6B7280] text-[10px] md:text-[14px] tracking-[1.4px] font-switzer'>
-                                        10pm ET (Sat-Thurs) | 9pm ET (Fri)
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className='md:ml-auto flex flex-col gap-2 md:gap-3 items-center justify-center'>
-                                <Button className='rounded-[0]  md:h-12 w-[200px]'>
-                                    <Phone />
-                                    CALL +1-605-472-5461
-                                </Button>
-
-                                <Button className='rounded-[0] border-[#D4AF374D] w-[200px] text-[#4B5563] bg-white md:h-12'>
-                                    <KeyRound />
-                                    CODE: 347692#
-                                </Button>
-
-                            </div>
-
-                        </div>
-                        <div className='bg-[#FFFFFF] p-6 md:p-8 flex flex-col items-center md:items-start md:flex-row gap-6 md:gap-8 rounded-[10px]'>
-                            <div className='bg-[#F5F1ED] flex justify-center items-center h-12 w-12 aspect-square rounded-full md:h-14 md:w-14'>
-                                <Phone className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
-
-                            </div>
-
-                            <div className='flex flex-col items-center gap-2 md:gap-1 md:items-start '>
-                                <div className='flex py-0.5 px-2 w-fit h-fit bg-[#D4AF37] items-center justify-center rounded-[2px]'>
-                                    <p className='uppercase text-[8px] md:text-[10px] font-switzer font-bold tracking-[1px] text-white'>Daily</p>
-                                </div>
-
-                                <p className='text-[#2C2C2C] text-[18px] md:text-[24px] font-semibold tracking-[-0.24px] font-gambetta'>
-                                    Holy Spirit Prayer Line
-                                </p>
-
-                                <div className='flex gap-2 md:gap-3 items-center'>
-                                    <Clock3 className=' text-[#8B3A3A] h-3 w-3 md:h-4 md:w-4' />
-                                    <p className='text-[#6B7280] text-[10px] md:text-[14px] tracking-[1.4px] font-switzer'>
-                                        10pm ET (Sat-Thurs) | 9pm ET (Fri)
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className='md:ml-auto flex flex-col gap-2 md:gap-3 items-center justify-center'>
-                                <Button className='rounded-[0]  md:h-12 w-[200px]'>
-                                    <Phone />
-                                    CALL +1-605-472-5461
-                                </Button>
-
-                                <Button className='rounded-[0] border-[#D4AF374D] w-[200px] text-[#4B5563] bg-white md:h-12'>
-                                    <KeyRound />
-                                    CODE: 347692#
-                                </Button>
-
-                            </div>
-
-                        </div>
-                        <div className='bg-[#FFFFFF] p-6 md:p-8 flex flex-col items-center md:items-start md:flex-row gap-6 md:gap-8 rounded-[10px]'>
-                            <div className='bg-[#F5F1ED] flex justify-center items-center h-12 w-12 aspect-square rounded-full md:h-14 md:w-14'>
-                                <Phone className=' text-[#D4AF37] h-5 w-5 md:h-6 md:w-6' />
-
-                            </div>
-
-                            <div className='flex flex-col items-center gap-2 md:gap-1 md:items-start '>
-                                <div className='flex py-0.5 px-2 w-fit h-fit bg-[#D4AF37] items-center justify-center rounded-[2px]'>
-                                    <p className='uppercase text-[8px] md:text-[10px] font-switzer font-bold tracking-[1px] text-white'>Daily</p>
-                                </div>
-
-                                <p className='text-[#2C2C2C] text-[18px] md:text-[24px] font-semibold tracking-[-0.24px] font-gambetta'>
-                                    Holy Spirit Prayer Line
-                                </p>
-
-                                <div className='flex gap-2 md:gap-3 items-center'>
-                                    <Clock3 className=' text-[#8B3A3A] h-3 w-3 md:h-4 md:w-4' />
-                                    <p className='text-[#6B7280] text-[10px] md:text-[14px] tracking-[1.4px] font-switzer'>
-                                        10pm ET (Sat-Thurs) | 9pm ET (Fri)
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className='md:ml-auto flex flex-col gap-2 md:gap-3 items-center justify-center'>
-                                <Button className='rounded-[0]  md:h-12 w-[200px]'>
-                                    <Phone />
-                                    CALL +1-605-472-5461
-                                </Button>
-
-                                <Button className='rounded-[0] border-[#D4AF374D] w-[200px] text-[#4B5563] bg-white md:h-12'>
-                                    <KeyRound />
-                                    CODE: 347692#
-                                </Button>
-
-                            </div>
-
-                        </div>
+                            ))
+                        }
 
                     </div>
 
@@ -330,7 +206,9 @@ export default function LivePrayer() {
                             <div className=" flex flex-col lg:flex-row lg:justify-center gap-6 lg:gap-8 mt-3">
 
                                 <Button variant='outline' className=' md:w-fit tracking-[1.4px] w-full'>
-                                    CONTACT US
+                                    <Link href={routes?.aboutUs} className="w-full md:w-fit">
+                                        CONTACT US
+                                    </Link>
                                 </Button>
                             </div>
                         </div>
@@ -351,7 +229,9 @@ export default function LivePrayer() {
 
                 <div className=" flex flex-col lg:flex-row lg:justify-center gap-6">
                     <Button className='text-[#fff]  w-full lg:w-fit'>
-                        JOIN A MINISTRY
+                        <Link href={'/#mission'} className="w-full md:w-fit">
+                            JOIN A MINISTRY
+                        </Link>
                     </Button>
 
                 </div>

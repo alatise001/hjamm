@@ -1,5 +1,7 @@
 import BooksBlock from '@/components/booksBlock'
 import React from 'react'
+import { events, ministries, announcements, books } from "../../data"
+
 
 export default function Books() {
     return (
@@ -30,14 +32,13 @@ export default function Books() {
                 </div>
 
                 <div className="flex flex-col md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 gap-6 md:gap-14">
-                    <BooksBlock />
-                    <BooksBlock />
-                    <BooksBlock />
-                    <BooksBlock />
-                    <BooksBlock />
-                    <BooksBlock />
-                    <BooksBlock />
-                    <BooksBlock />
+
+                    {
+                        books.map((book, index) => (
+                            <BooksBlock key={index} title={book.title} author={book.author} price={book.price} img={book.img} link={book.link} route={book.route} />
+                        ))
+                    }
+
                 </div>
             </section>
         </div>
