@@ -5,9 +5,12 @@ import Image from 'next/image'
 import React from 'react'
 import Link from 'next/link'
 import { routes } from "../routes"
+import { usePathname } from "next/navigation";
 
 
 export default function Header() {
+
+    const pathname = usePathname();
 
     const navList = [
         {
@@ -95,8 +98,8 @@ export default function Header() {
                         {/* Navigation Links */}
                         <nav className="flex-1 flex flex-col items-center justify-center space-y-8 text-white font-gambetta text-xl tracking-wider">
                             {navList.map((item, index) => (
-                                <Link key={index} href={item?.route} className="flex gap-2 items-center">
-                                    <p onClick={() => setIsMenuOpen(false)} className="hover:text-[#D4AF37] focus:text-[#D4AF37] transition-colors">{item?.name}</p>
+                                <Link key={index} href={item?.route} className={`flex gap-2 items-center`}>
+                                    <p onClick={() => setIsMenuOpen(false)} className={`hover:text-[#D4AF37] ${pathname === item.route ? 'text-[#D4AF37] border-b-1 border-[#D4AF37] pb-2.5 transition' : ''} focus:text-[#D4AF37] transition-colors`}>{item?.name}</p>
                                 </Link>
                             )
                             )}
