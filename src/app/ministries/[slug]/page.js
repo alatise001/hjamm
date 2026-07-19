@@ -1,13 +1,20 @@
+'use client'
+import React from 'react'
 import PetitionForm from '@/components/petitoionForm'
 import { ArrowLeft, HandHelping, MessageSquare } from 'lucide-react'
-import React from 'react'
+import { useSearchParams } from 'next/navigation'
 
 export default function MinistryDetails() {
+
+
+    const searchParams = useSearchParams();
+    const name = searchParams.get("name");
+
     return (
         <div className="">
             <section className="pt-36 pb-16 px-9.25 md:pt-50 h-[80vh] bg-[url('/intercessoryBg.png')] bg-cover bg-center flex flex-col gap-8 items-center bg-blend-overlay bg-black/80">
                 <div className="flex flex-col lg:max-w-[50%] gap-5">
-                    <h1 className="text-[36px] md:text-[72px] text-white font-gambetta font-medium text-center tracking-[-2.4px]">Intercessory Ministry</h1>
+                    <h1 className="text-[36px] md:text-[72px] text-white font-gambetta font-medium text-center tracking-[-2.4px]">{name}</h1>
                 </div>
             </section>
 
@@ -24,7 +31,7 @@ export default function MinistryDetails() {
                     </p>
 
                     <p className='text-[#8B3A3A]'>
-                        INTERCESSORY MINISTRY
+                        {name}
                     </p>
 
                 </section>

@@ -1,5 +1,7 @@
 import MinistriesBlock from '@/components/ministriesBlock'
 import React from 'react'
+import { events, ministries, announcements, books } from "../../data"
+
 
 export default function Ministries() {
     return (
@@ -29,14 +31,11 @@ export default function Ministries() {
                 </div>
 
                 <div className="flex flex-col md:grid md:grid-cols-3 lg:grid lg:grid-cols-4 gap-6 md:gap-14">
-                    <MinistriesBlock />
-                    <MinistriesBlock />
-                    <MinistriesBlock />
-                    <MinistriesBlock />
-                    <MinistriesBlock />
-                    <MinistriesBlock />
-                    <MinistriesBlock />
-                    <MinistriesBlock />
+                    {
+                        ministries.map((ministry, index) => (
+                            <MinistriesBlock key={index} name={ministry.name} description={ministry.description} img={ministry.img} route={ministry.route} />
+                        ))
+                    }
                 </div>
             </section>
         </div>

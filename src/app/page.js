@@ -11,10 +11,14 @@ import PetitionForm from "@/components/petitoionForm"
 import MissionBlock from "@/components/missionBlock"
 import ReadBlock from "@/components/readBlock"
 import DateSelect from "@/components/dateSelect"
+import { events, ministries, announcements, books } from "../data"
+import { routes } from "@/routes"
+import Link from "next/link";
 
 
 
-export default function Home() {
+
+export default function Home(title, description, startDate, endDate) {
 
   return (
     <div className="w-full">
@@ -41,15 +45,19 @@ export default function Home() {
 
 
           <div className="flex flex-col gap-5 md:flex-row md:gap-4 items-center justify-center">
-            <Button size="lg" className='md:w-59.5' >
-              Join Prayer
-              <ChevronRight className="" />
-            </Button>
+            <Link href={routes?.livePrayer} className="w-full md:w-fit">
+              <Button size="lg" className='md:w-59.5' >
+                Join Prayer
+                <ChevronRight className="" />
+              </Button>
+            </Link>
 
-            <Button size='lg' className='md:w-72.75' variant="outline">
-              Submit Prayer Request
-              <ChevronRight className="" />
-            </Button>
+            <Link href={routes?.livePrayer} className="w-full md:w-fit">
+              <Button size='lg' className='md:w-72.75' variant="outline">
+                Submit Prayer Request
+                <ChevronRight className="" />
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -108,8 +116,13 @@ export default function Home() {
 
 
         <div className="flex flex-col gap-8">
-          <LiveEvents when="live" />
-          <LiveEvents when="upcoming" />
+          {
+            events.map((event, index) => (
+              <LiveEvents key={index} when={event?.when} time={event?.time} startDate={event?.startDate} endDate={event?.endDate} title={event?.title} description={event?.description} />
+            ))
+          }
+          {/* <LiveEvents when="live" />
+          <LiveEvents when="upcoming" /> */}
         </div>
 
       </section >
@@ -121,26 +134,20 @@ export default function Home() {
         </div>
 
         <div className="flex gap-4 lg:gap-10.5 overflow-x-auto scrollbar-none w-full">
-          <MinistriesBlock />
-          <MinistriesBlock />
-          <MinistriesBlock />
-          <MinistriesBlock />
-          <MinistriesBlock />
-          <MinistriesBlock />
-          <MinistriesBlock />
-          <MinistriesBlock />
-          <MinistriesBlock />
-          <MinistriesBlock />
+          {
+            ministries.map((ministry, index) => (
+              <MinistriesBlock key={index} name={ministry.name} description={ministry.description} img={ministry.img} route={ministry.route} />
+            ))
+          }
+
         </div>
 
-        {/* <Button size="sm" className='text-white hidden lg:flex gap-2 self-center'>
-          See All Ministries
-          <ArrowRight />
-        </Button> */}
 
         <Button className='my-3 md:w-fit self-center gap-2'>
-          See All Ministries
-          <ArrowRight />
+          <Link href={routes?.ministries} className="w-full flex gap-2 items-center md:w-fit">
+            See All Ministries
+            <ArrowRight />
+          </Link>
         </Button>
       </section>
 
@@ -158,20 +165,23 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 gap-6 md:gap-10">
-          <NewsBlock />
-          <NewsBlock />
-          <NewsBlock />
-          <NewsBlock />
+          {
+            announcements.map((announcement, index) => (
+              <NewsBlock key={index} type={announcement.type} name={announcement.name} description={announcement.description} img={announcement.img} route={announcement.route} />
+            ))
+          }
         </div>
 
         <Button className='my-3 md:w-fit self-center gap-2'>
-          See All Updates
-          <ArrowRight />
+          <Link href={routes?.events} className="w-full flex gap-2 items-center md:w-fit">
+            See All Updates
+            <ArrowRight />
+          </Link>
         </Button>
 
       </section>
 
-      <section className="bg-white py-8 px-6 md:px-46.25 lg:w-[60%] lg:mx-auto md:py-24 flex flex-col gap-7">
+      <section id="petition" className="bg-white py-8 px-6 md:px-46.25 lg:w-[60%] lg:mx-auto md:py-24 flex flex-col gap-7">
         <div className="text-center flex flex-col gap-4.5 w-[90%] mx-auto">
           <div className="flex items-center justify-center gap-3">
             <MessageSquare className="text-[#8B3A3A] h-6 w-6" />
@@ -191,7 +201,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#F5F1ED] py-8 md:py-24 px-6 md:px-10.5 pt-14.5 flex flex-col gap-7">
+      <section id="mission" className="bg-[#F5F1ED] py-8 md:py-24 px-6 md:px-10.5 pt-14.5 flex flex-col gap-7">
         <MissionBlock />
 
       </section>
@@ -203,15 +213,18 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 gap-6 md:gap-10">
-          <ReadBlock />
-          <ReadBlock />
-          <ReadBlock />
-          <ReadBlock />
+          {
+            books.map((book, index) => (
+              <ReadBlock key={index} title={book.title} author={book.author} price={book.price} img={book.img} link={book.link} />
+            ))
+          }
         </div>
 
         <Button className='my-3 md:w-fit self-center gap-2'>
-          VISIT THE BOOKSTORE
-          <ArrowRight />
+          <Link href={routes?.books} className="w-full flex gap-2 items-center md:w-fit">
+            VISIT THE BOOKSTORE
+            <ArrowRight />
+          </Link>
         </Button>
 
 

@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
 
+import { gallery } from "../../data"
+
 export default function Gallery() {
     return (
         <div>
@@ -20,7 +22,7 @@ export default function Gallery() {
                     <h1 className="text-[36px] md:text-[72px] text-white font-gambetta font-medium text-center tracking-[-2.4px]">Gallery of Sacred Moments</h1>
 
                     <p className="text-[#ffffff] italic text-[14px] md:text-[24px] font-light font-switzer text-center">Witness the profound encounter between the human heart and the Divine
-                        through our community's spiritual life.
+                        through our community&apos;s spiritual life.
                     </p>
                 </div>
             </section>
@@ -33,10 +35,12 @@ export default function Gallery() {
                 </div>
 
                 <div className="flex flex-col md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 gap-6 md:gap-10">
-                    <GalleryBlock />
-                    <GalleryBlock />
-                    <GalleryBlock />
-                    <GalleryBlock />
+                    {
+                        gallery.map((item, index) => (
+
+                            <GalleryBlock key={index} day={item.day} images={item.images} title={item.title} coverImg={item.coverImg} />
+                        ))
+                    }
                 </div>
             </section>
 
@@ -47,7 +51,7 @@ export default function Gallery() {
 
                 <p className="text-[#fff] font-switzer font-light text-[12px] md:text-[20px] ">
                     The Digital Prayer Chapel is built by the community. Do you have a photo from a recent retreat or
-                    workshop that reflects God's grace? Share it with our community gallery.
+                    workshop that reflects God&apos;s grace? Share it with our community gallery.
                 </p>
 
                 <div className=" flex flex-col lg:flex-row lg:justify-center gap-6">

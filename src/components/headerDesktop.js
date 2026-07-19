@@ -7,78 +7,40 @@ import { iconLibraries } from 'shadcn/icons'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import { usePathname } from "next/navigation";
+import { routes } from "../routes"
 
 
 export default function HeaderDesktop() {
 
     const pathname = usePathname();
 
-    console.log(pathname);
-
     const navList = [
         {
             name: "Ministries",
             hasOptions: true,
-            route: "/ministries",
-            options: [
-                {
-                    name: "Singing Ministry",
-                    icon: <Music />,
-                    desc: 'Sacred harmony & liturgical worship'
-                },
-                {
-                    name: "Youth Ministry",
-                    icon: <Music />,
-                    desc: 'Sacred harmony & liturgical worship'
-                },
-                {
-                    name: "Gesthsemane Hour Ministry",
-                    icon: <Music />,
-                    desc: 'Sacred harmony & liturgical worship'
-                }, {
-                    name: "Technology Ministry",
-                    icon: <Music />,
-                    desc: 'Sacred harmony & liturgical worship'
-                }, {
-                    name: "Mission & a Charity Ministry",
-                    icon: <Music />,
-                    desc: 'Sacred harmony & liturgical worship'
-                }, {
-                    name: "Rosary Ministry",
-                    icon: <Music />,
-                    desc: 'Sacred harmony & liturgical worship'
-                }, {
-                    name: "Testimony Ministry",
-                    icon: <Music />,
-                    desc: 'Sacred harmony & liturgical worship'
-                }, {
-                    name: "Intercessory Ministry",
-                    icon: <Music />,
-                    desc: 'Sacred harmony & liturgical worship'
-                },
-            ]
+            route: routes.ministries,
         },
         {
             name: "Events",
             hasOptions: false,
-            route: "/events",
+            route: routes.events,
         },
         {
             name: "Gallery",
             hasOptions: false,
-            route: "/gallery",
+            route: routes.gallery,
         }, {
             name: "Books",
             hasOptions: false,
-            route: "/books"
+            route: routes.books
         }, {
             name: "Live Prayers",
             hasOptions: false,
-            route: "/live-prayer"
+            route: routes.livePrayer
         }, {
             name: "About Us",
             hasOptions: false,
-            route: "/about-us"
+            route: routes.aboutUs
         },
     ]
 
@@ -86,37 +48,45 @@ export default function HeaderDesktop() {
         {
             name: "Singing Ministry",
             icon: <Music />,
-            desc: 'Sacred harmony & liturgical worship'
+            desc: 'Sacred harmony & liturgical worship',
+            route: routes.ministryDetails("singing")
         },
         {
             name: "Youth Ministry",
-            icon: <Sparkle />,
-            desc: 'Forming young hearts in faith'
+            icon: <Music />,
+            desc: 'Forming young hearts in faith',
+            route: routes.ministryDetails("youth")
         },
         {
             name: "Gesthsemane Hour Ministry",
-            icon: <Church />,
-            desc: 'Vigil of prayer and reparation'
+            icon: <Music />,
+            desc: 'Vigil of prayer and reparation',
+            route: routes.ministryDetails("gesthsemane")
         }, {
             name: "Technology Ministry",
-            icon: <Monitor />,
-            desc: 'Digital stewardship & livestreams'
+            icon: <Music />,
+            desc: 'Digital stewardship & livestreams',
+            route: routes.ministryDetails("technology")
         }, {
             name: "Mission & a Charity Ministry",
-            icon: <Earth />,
-            desc: 'Global apostolic service'
+            icon: <Music />,
+            desc: 'Global apostolic service',
+            route: routes.ministryDetails("mission-charity")
         }, {
             name: "Rosary Ministry",
-            icon: <Cross />,
-            desc: 'Sacred Rosary prayer'
+            icon: <Music />,
+            desc: 'Sacred Rosary prayer',
+            route: routes.ministryDetails("rosary")
         }, {
             name: "Testimony Ministry",
-            icon: <MicVocal />,
-            desc: 'Witnessing Gods grace & mercy'
+            icon: <Music />,
+            desc: 'Witnessing Gods grace & mercy',
+            route: routes.ministryDetails("testimony")
         }, {
             name: "Intercessory Ministry",
-            icon: <HandHelping />,
-            desc: 'Standing in prayer for all'
+            icon: <Music />,
+            desc: 'Standing in prayer for all',
+            route: routes.ministryDetails("intercessory")
         },
     ]
 
@@ -195,32 +165,22 @@ export default function HeaderDesktop() {
                             <div className='grid grid-cols-3 gap-15 pb-12 px-12 grid-rows-3'>
                                 {
                                     options.map((item, index) => (
-                                        <div key={index} className='flex w-fit cursor-pointer h-fit items-center gap-4'>
-                                            <div className='h-12 w-12 rounded-[10px] bg-[#FFFFFF80] text-[#8B3A3A] flex flex-col items-center justify-center'>
-                                                {item.icon}
-                                            </div>
+                                        <Link key={index} href={{ pathname: item.route, query: { name: item.name } }} className='w-fit h-fit'>
+                                            <div className='flex w-fit cursor-pointer h-fit items-center gap-4'>
+                                                <div className='h-12 w-12 rounded-[10px] bg-[#FFFFFF80] text-[#8B3A3A] flex flex-col items-center justify-center'>
+                                                    {item.icon}
+                                                </div>
 
-                                            <div>
-                                                <p className='font-gambetta tracking-[-1.16px] text-[16px] font-bold text-[#2C2C2C]'>{item.name}</p>
-                                                <p className='font-switzer text-[12px] text-[#6B7280]'>{item.desc}</p>
+                                                <div>
+                                                    <p className='font-gambetta tracking-[-1.16px] text-[16px] font-bold text-[#2C2C2C]'>{item.name}</p>
+                                                    <p className='font-switzer text-[12px] text-[#6B7280]'>{item.desc}</p>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </Link>
 
                                     ))
                                 }
 
-
-
-                                {/* <div className='flex w-fit h-fit items-center gap-4'>
-                            <div className='h-[48px] w-[48px] rounded-[10px] bg-[#FFFFFF80] text-[#8B3A3A] flex flex-col items-center justify-center'>
-                                <Music />
-                            </div>
-
-                            <div>
-                                <p className='font-gambetta tracking-[-1.16px] text-[16px] font-bold text-[#2C2C2C]'>Singing Ministry</p>
-                                <p className='font-switzer text-[12px] text-[#6B7280]'>Sacred harmony & liturgical worship</p>
-                            </div>
-                        </div> */}
 
                             </div>
 

@@ -1,6 +1,9 @@
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Church, HandHelping, Heart, UsersRound } from 'lucide-react'
 import React from 'react'
+import { ministers } from '../../data'
+import Link from 'next/link'
+import { routes } from '@/routes'
 
 export default function AboutUs() {
     return (
@@ -139,13 +142,13 @@ export default function AboutUs() {
 
                 <div className='grid gap-8 md:grid-cols-2 lg:grid-cols-3 md:gap-10 lg:gap-12'>
 
-                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
+                    {ministers.map((item, index) => (
                         <div key={index} className='flex gap-6 flex-col items-center w-fit mx-auto'>
-                            <div className='h-[142px] w-[142px] rounded-full bg-[url("/pastor.jpg")] bg-top bg-contain aspect-square bg-cover bg-center' />
+                            <div className='h-[142px] w-[142px] rounded-full bg-[url("/pastor.jpg")] bg-top bg-contain aspect-square bg-cover bg-center' style={{ backgroundImage: `url(${item.img})` }} />
 
                             <div className='flex flex-col items-center'>
                                 <h2 className=' text-[18px] lg:text-[24px] text-[#2C2C2C] font-gambetta font-bold tracking-[-0.24px]'>
-                                    Bro. Uwakwe Chukwu
+                                    {item.name}
                                 </h2>
 
                                 <h3 className='text-[14px] lg:text-[18px] text-[#8B3A3A] font-bold tracking-[-0.18px]'>
@@ -159,10 +162,10 @@ export default function AboutUs() {
 
                 </div>
 
-                <Button className=" self-center md:col-span-2 lg:col-span-3 w-fit text-[14px] tracking-[1.4px] mt-12">
+                {/* <Button className=" self-center md:col-span-2 lg:col-span-3 w-fit text-[14px] tracking-[1.4px] mt-12">
                     View All
                     <ArrowRight />
-                </Button>
+                </Button> */}
             </section>
 
             <section className='bg-[#fff] w-full py-8 lg:py-24 lg:px-12 px-6 flex flex-col gap-5 md:gap-16'>
@@ -176,7 +179,7 @@ export default function AboutUs() {
 
 
                 <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-12'>
-                    <div className='flex flex-col gap-8 lg:gap-16 bg-[#F5F1EDA1] rounded-[10px] p-5 lg:p-10'>
+                    <div className='flex flex-col gap-8 lg:gap-16 bg-[#F5F1EDA1] rounded-[80px_10px_10px_10px] p-5 lg:p-10'>
                         <p className='text-[#2C2C2C] font-switzer text-[12px] italic lg:text-[18px] not-only:leading-6.5'>
                             "Being homebound due to illness,
                             HJAMM became my spiritual
@@ -198,39 +201,39 @@ export default function AboutUs() {
 
                     <div className='flex flex-col gap-8 lg:gap-16 bg-[#F5F1EDA1] rounded-[10px] p-5 lg:p-10'>
                         <p className='text-[#2C2C2C] font-switzer text-[12px] italic lg:text-[18px] not-only:leading-6.5'>
-                            "Being homebound due to illness,
-                            HJAMM became my spiritual
-                            lifeline. The Rosary sessions make
-                            me feel like I am kneeling right in
-                            the chapel with everyone else."
+                            "The healing ministry has
+                            transformed my family life. Fr.
+                            Thomas's teachings on the Sacred
+                            Hearts helped me find peace I
+                            never thought possible."
                         </p>
 
                         <div className='font-switzer'>
                             <h3 className='font-bold font-switzer text-[14px] lg:text-[18px] text-[#2C2C2C]'>
-                                Chike S.
+                                Fisayo M.
                             </h3>
                             <p className='text-[10px] lg:text-[12px] text-[#D4AF37] font-bold tracking-[1.2px] uppercase'>
-                                Devoted Member
+                                Ministry Volunteer
                             </p>
                         </div>
 
                     </div>
 
-                    <div className='flex flex-col gap-8 lg:gap-16 bg-[#F5F1EDA1] rounded-[10px] p-5 lg:p-10'>
+                    <div className='flex flex-col gap-8 lg:gap-16 bg-[#F5F1EDA1] rounded-[10px_10px_80px_10px] p-5 lg:p-10'>
                         <p className='text-[#2C2C2C] font-switzer text-[12px] italic lg:text-[18px] not-only:leading-6.5'>
-                            "Being homebound due to illness,
-                            HJAMM became my spiritual
-                            lifeline. The Rosary sessions make
-                            me feel like I am kneeling right in
-                            the chapel with everyone else."
+                            "In the middle of my busy workday,
+                            the Mid-day Angelus brings me
+                            back to what matters. This
+                            community is a true blessing in the
+                            digital world."
                         </p>
 
                         <div className='font-switzer'>
                             <h3 className='font-bold font-switzer text-[14px] lg:text-[18px] text-[#2C2C2C]'>
-                                Chike S.
+                                David L.
                             </h3>
                             <p className='text-[10px] lg:text-[12px] text-[#D4AF37] font-bold tracking-[1.2px] uppercase'>
-                                Devoted Member
+                                Global Supporter
                             </p>
                         </div>
 
@@ -252,13 +255,18 @@ export default function AboutUs() {
                 </p>
 
                 <div className=" flex flex-col lg:flex-row lg:justify-center gap-6">
-                    <Button className='text-[#fff]  w-full lg:w-fit'>
-                        Submit a Prayer Request
-                    </Button>
 
-                    <Button variant="outline" className=' border-[#8B3A3A] text-[#8B3A3A] w-full lg:w-fit'>
-                        Volunteer to Serve
-                    </Button>
+                    <Link href={routes?.livePrayer} className="w-full  md:w-fit">
+                        <Button className='text-[#fff]  w-full lg:w-fit'>
+                            Submit a Prayer Request
+                        </Button>
+                    </Link>
+
+                    <Link href={'/#mission'} className="w-full  md:w-fit">
+                        <Button variant="outline" className=' border-[#8B3A3A] text-[#8B3A3A] w-full lg:w-fit'>
+                            Volunteer to Serve
+                        </Button>
+                    </Link>
                 </div>
 
             </section >
