@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react'
-import { ArrowRight, ChevronDown, ChevronUp, Church, Cross, Earth, HandHelping, MicVocal, Monitor, Music, Sparkle, TextAlignJustify, X } from 'lucide-react'
+import { ArrowRight, Astroid, ChevronDown, ChevronUp, Church, Cross, Earth, HandHelping, MicVocal, Monitor, Music, Sparkle, TextAlignJustify, X } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import { iconLibraries } from 'shadcn/icons'
@@ -53,38 +53,38 @@ export default function HeaderDesktop() {
         },
         {
             name: "Youth Ministry",
-            icon: <Music />,
+            icon: <Astroid />,
             desc: 'Forming young hearts in faith',
             route: routes.ministryDetails("youth")
         },
         {
             name: "Gesthsemane Hour Ministry",
-            icon: <Music />,
+            icon: <Church />,
             desc: 'Vigil of prayer and reparation',
             route: routes.ministryDetails("gesthsemane")
         }, {
             name: "Technology Ministry",
-            icon: <Music />,
+            icon: <Monitor />,
             desc: 'Digital stewardship & livestreams',
             route: routes.ministryDetails("technology")
         }, {
             name: "Mission & a Charity Ministry",
-            icon: <Music />,
+            icon: <Earth />,
             desc: 'Global apostolic service',
             route: routes.ministryDetails("mission-charity")
         }, {
             name: "Rosary Ministry",
-            icon: <Music />,
+            icon: <Cross />,
             desc: 'Sacred Rosary prayer',
             route: routes.ministryDetails("rosary")
         }, {
             name: "Testimony Ministry",
-            icon: <Music />,
+            icon: <MicVocal />,
             desc: 'Witnessing Gods grace & mercy',
             route: routes.ministryDetails("testimony")
         }, {
             name: "Intercessory Ministry",
-            icon: <Music />,
+            icon: <HandHelping />,
             desc: 'Standing in prayer for all',
             route: routes.ministryDetails("intercessory")
         },
