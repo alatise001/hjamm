@@ -1,9 +1,10 @@
+import React from 'react'
 import BooksBlock from '@/components/booksBlock'
 import { Button } from '@/components/ui/button'
 import UpcomingEventsBlock from '@/components/upcomingEventsBlock'
 import { ArrowLeft, ArrowRight, Calendar, Calendar1, CircleCheck, Clock, Clock1, Cross, DollarSign, HandCoins, MapPin, Star, UsersRound } from 'lucide-react'
 import Image from 'next/image'
-import React from 'react'
+import { events, ministries, announcements, books } from "../../../data"
 
 export default function EventDetails() {
     return (
@@ -36,7 +37,7 @@ export default function EventDetails() {
                     objectFit=""
                 />
 
-                <div className=' md:flex md:w-full md:justify-between'>
+                <div className=' flex flex-col md:w-full gap-6 md:justify-between'>
                     <div className='flex flex-col items-center text-center gap-2 lg:w-[50%] md:gap-1 md:gap-4 md:items-start '>
                         <div className='flex py-1 px-2 w-fit h-fit bg-[#D4AF37] justify-center rounded-[2px]'>
                             <p className='uppercase text-[8px] md:text-[10px] font-switzer font-bold tracking-[2px] text-white'>SAINTS COLLECTION</p>
@@ -63,12 +64,12 @@ export default function EventDetails() {
                             </div>
 
                             <p className='text-[#8B3A3A] text-[11px] md:text-[14px] font-gambetta'>(61 Reviews)</p>
-                            <p className='text-[#D1D5DB] text-[11px] md:text-[14px] font-gambetta'>|</p>
+                            <p className='text-[#D1D5DB] hidden md:block text-[11px] md:text-[14px] font-gambetta'>|</p>
 
-                            <p className='text-[#16A34A] hidden md:block text-[10px] md:text-[12px] uppercase font-switzer tracking-[1.2px] font-bold'>IN STOCK</p>
+                            <p className='text-[#16A34A]  text-[10px] md:text-[12px] uppercase font-switzer tracking-[1.2px] font-bold'>IN STOCK</p>
                         </div>
 
-                        <p className='text-[#8B3A3A] text-[24px] md:text-[30px] font-switzer font-semibold'>
+                        <p className='text-[#8B3A3A] hidden md:block text-[24px] md:text-[30px] font-switzer font-semibold'>
                             NGN 33,979.00
                         </p>
                     </div>
@@ -146,11 +147,12 @@ export default function EventDetails() {
                 </div>
 
                 <div className="flex gap-4 lg:gap-10.5 overflow-x-auto scrollbar-none w-full">
-                    <BooksBlock />
-                    <BooksBlock />
-                    <BooksBlock />
-                    <BooksBlock />
-                    <BooksBlock />
+
+                    {
+                        books.map((book, index) => (
+                            <BooksBlock key={index} title={book.title} author={book.author} price={book.price} img={book.img} link={book.link} />
+                        ))
+                    }
                 </div>
             </section>
 

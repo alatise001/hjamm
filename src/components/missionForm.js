@@ -26,22 +26,15 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { ArrowRight } from "lucide-react"
+import { ministries } from "@/data"
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner"
 
-const spokenLanguages = [
-    { label: "English", value: "en" },
-    { label: "Spanish", value: "es" },
-    { label: "French", value: "fr" },
-    { label: "German", value: "de" },
-    { label: "Italian", value: "it" },
-    { label: "Chinese", value: "zh" },
-    { label: "Japanese", value: "ja" },
-]
 
 const formSchema = z.object({
     name: z
         .string()
-        .min(5, "Name must be at least 5 characters.")
-        .max(32, "Name must be at most 32 characters."),
+        .min(1, "Name is required."),
 
     email: z
         .string()
@@ -55,15 +48,34 @@ const formSchema = z.object({
     ministry: z
         .string()
         .min(1, "Please select a ministry.")
-        .refine((val) => val !== "auto", {
+        .refine((val) => val !== "Select a ministry", {
             message:
                 "Auto-detection is not allowed. Please select a specific ministry.",
         }),
 
 })
 
+const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID2;
+const USER_PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY;
+
+const REQUEST_STATUS = {
+    IDEAL: "ideal",
+    PENDING: "pending",
+    SUCCESS: "success",
+    ERROR: "error",
+};
+
+
+
 
 export default function MissionForm() {
+
+    const [requestStatus, setRequestStatus] = React.useState(
+        REQUEST_STATUS.IDEAL
+    );
+
+
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -71,11 +83,29 @@ export default function MissionForm() {
             email: "",
             phone: "",
             ministry: "",
+            submitted_at: new Date().toLocaleString()
         },
     })
 
     function onSubmit(data) {
-        console.log(data);
+        setRequestStatus(REQUEST_STATUS.PENDING);
+
+        emailjs
+            .send(SERVICE_ID, TEMPLATE_ID, data, {
+                publicKey: USER_PUBLIC_KEY,
+            }).then(
+                (result) => {
+                    form.reset();
+                    toast("Mission form submitted successfully!");
+                    setRequestStatus(REQUEST_STATUS.SUCCESS);
+                    console.log("Email sent successfully:", result.text);
+                },
+                (error) => {
+                    console.error("Error sending email:", error.text);
+                    toast("Mission form submission failed, try again later.");
+                    setRequestStatus(REQUEST_STATUS.ERROR);
+                }
+            );
     }
 
     return (
@@ -179,9 +209,9 @@ export default function MissionForm() {
                                     <SelectContent position="item-aligned">
                                         <SelectItem value="auto">Auto</SelectItem>
                                         <SelectSeparator />
-                                        {spokenLanguages.map((language) => (
-                                            <SelectItem key={language.value} value={language.value}>
-                                                {language.label}
+                                        {ministries.map((mini) => (
+                                            <SelectItem key={mini?.name} value={mini?.name}>
+                                                {mini?.name}
                                             </SelectItem>
                                         ))}
                                     </SelectContent>
@@ -195,9 +225,8 @@ export default function MissionForm() {
 
 
 
-            <Button type="submit" form="prayer-request" className="w-full tracking-[2px] ">
-                SEND APPLICATION
-
+            <Button type="submit" form="mission-form" className="w-full tracking-[2px] ">
+                {requestStatus === REQUEST_STATUS.PENDING ? "SENDING..." : "SEND APPLICATION"}
                 <ArrowRight className=" ml-2.5 h-4 w-4" />
             </Button>
 

@@ -7,6 +7,7 @@ import * as z from "zod"
 
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
+import emailjs from "@emailjs/browser";
 
 import {
     Field,
@@ -25,6 +26,8 @@ import {
     InputGroupTextarea,
 } from "@/components/ui/input-group"
 import { Checkbox } from "@/components/ui/checkbox"
+import { sendPrayerRequestEmail } from "@/lib/emailService"
+import { toast } from "sonner"
 
 const formSchema = z.object({
     name: z
@@ -33,11 +36,11 @@ const formSchema = z.object({
         .optional(),
     email: z
         .string()
+        // .email({ message: "Invalid email address format." })
         .optional(),
-    intention: z
+    message: z
         .string()
         .min(20, "Prayer Request must be at least 20 characters.")
-        .max(100, "Prayer Request must be at most 100 characters.")
         .nonoptional(),
 
     urgent: z.boolean()
@@ -46,20 +49,52 @@ const formSchema = z.object({
 
 })
 
+const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID;
+const USER_PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY;
+
+const REQUEST_STATUS = {
+    IDEAL: "ideal",
+    PENDING: "pending",
+    SUCCESS: "success",
+    ERROR: "error",
+};
+
 
 export default function PetitionForm() {
+    const [requestStatus, setRequestStatus] = React.useState(
+        REQUEST_STATUS.IDEAL
+    );
+
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
             email: "",
-            intention: "",
+            message: "",
             urgent: false,
+            submitted_at: new Date().toLocaleString()
         },
     })
 
-    function onSubmit(data) {
-        console.log(data);
+    async function onSubmit(data) {
+        setRequestStatus(REQUEST_STATUS.PENDING);
+        emailjs
+            .send(SERVICE_ID, TEMPLATE_ID, data, {
+                publicKey: USER_PUBLIC_KEY,
+            }).then(
+                (result) => {
+                    form.reset();
+                    toast("Prayer request submitted successfully!");
+                    setRequestStatus(REQUEST_STATUS.SUCCESS);
+                    console.log("Email sent successfully:", result.text);
+                },
+                (error) => {
+                    console.error("Error sending email:", error.text);
+                    toast("Prayer request submission failed, try again later.");
+                    setRequestStatus(REQUEST_STATUS.ERROR);
+                }
+            );
     }
 
     return (
@@ -113,16 +148,16 @@ export default function PetitionForm() {
                     />
 
                     <Controller
-                        name="intention"
+                        name="message"
                         control={form.control}
                         render={({ field, fieldState }) => (
                             <Field data-invalid={fieldState.invalid}>
-                                <FieldLabel htmlFor="prayer-request-intention">
-                                    Your Intention
+                                <FieldLabel htmlFor="prayer-request-message">
+                                    Your Message
                                 </FieldLabel>
                                 <Textarea
                                     {...field}
-                                    id="prayer-request-intention"
+                                    id="prayer-request-message"
                                     aria-invalid={fieldState.invalid}
                                     placeholder="Share your prayer request with us..."
                                     className="min-h-39"
@@ -169,8 +204,9 @@ export default function PetitionForm() {
 
 
             <Button type="submit" form="prayer-request" className="w-full tracking-[2px] ">
-                SEND TO THE ALTAR
+                {requestStatus === REQUEST_STATUS.PENDING ? "SENDING..." : "SEND TO THE ALTAR"}
             </Button>
+
 
         </div>
 

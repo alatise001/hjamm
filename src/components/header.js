@@ -4,6 +4,7 @@ import { TextAlignJustify, X } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import Link from 'next/link'
+import { routes } from "../routes"
 
 
 export default function Header() {
@@ -12,29 +13,29 @@ export default function Header() {
         {
             name: "Ministries",
             hasOptions: true,
-            route: "/ministries",
+            route: routes.ministries,
         },
         {
             name: "Events",
             hasOptions: false,
-            route: "/events",
+            route: routes.events,
         },
         {
             name: "Gallery",
             hasOptions: false,
-            route: "/gallery",
+            route: routes.gallery,
         }, {
             name: "Books",
             hasOptions: false,
-            route: "/books"
+            route: routes.books
         }, {
             name: "Live Prayers",
             hasOptions: false,
-            route: "/live-prayer"
+            route: routes.livePrayer
         }, {
             name: "About Us",
             hasOptions: false,
-            route: "/about-us"
+            route: routes.aboutUs
         },
     ]
 

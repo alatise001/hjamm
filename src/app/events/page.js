@@ -8,6 +8,9 @@ import { Button } from '@/components/ui/button'
 import { ArrowRight, CalendarDays } from 'lucide-react'
 import Image from 'next/image'
 import { Calendar } from "@/components/ui/calendar"
+import { allEvents } from '../../data'
+import Link from 'next/link'
+import { routes } from "@/routes"
 
 export default function Events() {
 
@@ -70,14 +73,6 @@ export default function Events() {
                                 </div>
                             ))
                         }
-
-                        {/* <div className={`bg-[#8B3A3A] flex justify-center items-center rounded-full py-2.25 uppercase px-3 w-fit`}>
-                        <p className={'font-switzer text-[8px] font-bold leading-3.75 tracking-[1px] text-white'}>All Events</p>
-                    </div>
-
-                    <div className={`bg-[#FFFFFF] justify-center items-center border border-[#8B3A3A0D] uppercase rounded-full py-2.25 px-3 w-fit`}>
-                        <p className={'font-switzer text-[8px] font-bold leading-3.75 tracking-[1px] text-[#6B7280]'}>Workshops</p>
-                    </div>*/}
                     </div>
 
                     <div className='w-full lg:w-[319px]'>
@@ -100,7 +95,7 @@ export default function Events() {
                             mode="single"
                             selected={date}
                             onSelect={setDate}
-                            className="rounded-lg border hidden lg:block"
+                            className="rounded-lg border font-gambetta hidden lg:block"
                         // captionLayout="dropdown"
                         />
 
@@ -139,12 +134,14 @@ export default function Events() {
 
 
                     <div className="flex lg:grid lg:grid-cols-2 gap-4 lg:gap-8 overflow-x-auto scrollbar-none w-full">
-                        <EventItemBlock />
-                        <EventItemBlock />
-                        <EventItemBlock />
-                        <EventItemBlock />
-                        <EventItemBlock />
-                        <EventItemBlock />
+                        {
+                            allEvents.map((event, index) => (
+
+
+                                <EventItemBlock key={index} online={event.online} type={event.type} location={event.location} name={event.name} description={event.description} route={event.route} date={event.date} img={event.img} />
+                            ))
+                        }
+
                     </div>
 
                     <div className='bg-[#8B3A3AE5] lg:hidden flex flex-col gap-8 px-8 py-6 rounded-[16px]'>
@@ -182,6 +179,8 @@ export default function Events() {
 
             </section >
 
+
+
             <section className='bg-[#8B3A3A] w-full py-8 lg:py-24 lg:px-46.25 px-6 flex flex-col gap-5'>
                 <h2 className='text-white text-[24px] lg:text-[48px] italic font-gambetta leading-10 text-center'>
                     Seeking Something More?
@@ -194,11 +193,15 @@ export default function Events() {
 
                 <div className=" flex flex-col lg:flex-row lg:justify-center gap-6 lg:gap-8 mt-3">
                     <Button className='bg-white h-[52px] lg:w-fit tracking-[1.4px] text-[#8B3A3A]  w-full'>
-                        Contact Support
+                        <Link href={routes?.aboutUs} className="w-full md:w-fit">
+                            Contact Support
+                        </Link>
                     </Button>
 
                     <Button variant='outline' className='h-13 lg:w-fit tracking-[1.4px] w-full'>
-                        Submit a Prayer Request
+                        <Link href={routes?.livePrayer} className="w-full md:w-fit">
+                            Submit a Prayer Request
+                        </Link>
                     </Button>
                 </div>
             </section>
