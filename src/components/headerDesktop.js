@@ -186,19 +186,20 @@ export default function HeaderDesktop() {
 
                             <div className=' bg-[#8B3A3A0D] mt-auto h-[48px] py-4 px-12 border-[#D4AF371A] border-t flex justify-between items-center text-[10px] font-semibold uppercase tracking-[2px] font-switzer'>
                                 <p className='text-[#707070]'>DISCOVER YOUR VOCATION IN OUR MINISTRY FAMILY</p>
-
-                                <div className='flex items-center gap-4 text-[#8B3A3A]'>
-                                    <p>
-                                        VIEW ALL MINISTRIES
-                                    </p>
-                                    <ArrowRight />
-                                </div>
+                                <Link href={routes.ministries}>
+                                    <div className='flex items-center gap-4 text-[#8B3A3A]'>
+                                        <p>
+                                            VIEW ALL MINISTRIES
+                                        </p>
+                                        <ArrowRight />
+                                    </div>
+                                </Link>
                             </div>
                         </div>
 
                     </div>
                 )
             }
-        </div>
+        </div >
     )
 }
