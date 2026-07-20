@@ -151,8 +151,8 @@ export default function AboutUs() {
                                     {item.name}
                                 </h2>
 
-                                <h3 className='text-[14px] lg:text-[18px] text-[#8B3A3A] font-bold tracking-[-0.18px]'>
-                                    Vision Bearer
+                                <h3 className='text-[14px] lg:text-[18px] text-[#8B3A3A] uppercase font-bold tracking-[-0.18px]'>
+                                    {item?.role}
                                 </h3>
 
                             </div>

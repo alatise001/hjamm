@@ -36,21 +36,46 @@ export default function Footer() {
                     <div className='flex gap-4 items-center'>
                         {/* <div className='h-10 aspect-square rounded-full border border-[#6B728029] flex items-center justify-center'>
                     </div> */}
-                        <Image
-                            className=""
-                            src="/facebook.svg"
-                            alt="Facebook logomark"
-                            width={30}
-                            height={30}
-                        />
 
-                        <Image
-                            className=""
-                            src="/youtube.svg"
-                            alt="YouTube logomark"
-                            width={30}
-                            height={30}
-                        />
+                        <Link href={routes.facebook} target="_blank" rel="noopener noreferrer">
+                            <Image
+                                className=""
+                                src="/facebook.svg"
+                                alt="Facebook logomark"
+                                width={30}
+                                height={30}
+                            />
+                        </Link>
+
+                        <Link href={routes?.youtube} target="_blank" rel="noopener noreferrer">
+                            <Image
+                                className=""
+                                src="/youtube.svg"
+                                alt="YouTube logomark"
+                                width={30}
+                                height={30}
+                            />
+                        </Link>
+
+                        <Link href={routes?.instagram} target="_blank" rel="noopener noreferrer">
+                            <Image
+                                className=""
+                                src="/instagram.svg"
+                                alt="Instagram logomark"
+                                width={30}
+                                height={30}
+                            />
+                        </Link>
+
+                        <Link href={routes?.tiktok} target="_blank" rel="noopener noreferrer">
+                            <Image
+                                className=""
+                                src="/tiktok.svg"
+                                alt="TikTok logomark"
+                                width={30}
+                                height={30}
+                            />
+                        </Link>
                     </div>
 
                     <p className='hidden md:block text-[#7A7A7A] font-switzer text-[12px] underline '>
@@ -118,7 +143,7 @@ export default function Footer() {
 
 
 
-            </div>
+            </div >
 
             <div className='flex items-center justify-center flex-col md:flex-row md:justify-between pb-6 md:pb-10 px-6 md:px-12 text-left pt-6.5 gap-5.5'>
 

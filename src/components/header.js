@@ -78,7 +78,7 @@ export default function Header() {
 
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="p-2 z-50 focus:outline-none"
+                        className="p-2 z-50 cursor-pointer focus:outline-none"
                     >
                         {isMenuOpen ? (
                             <X className="w-6 h-6 text-white" />
